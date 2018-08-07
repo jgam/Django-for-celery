@@ -1,13 +1,13 @@
 # Django-for-celery
 
-##basic explanation of each python file in django
+## basic explanation of each python file in django
 -manage.py -> command-line utility
 -mysite/ -> directory where python package sits in
 -mysite/__init__.py -> directory should be considered a python package
 -mysite/urls.py -> URL declarations for project
 -mysite/wsgi.py -> WSGI-compatible web servers to serve project
 
-##Django app part 1
+## Django app part 1
 -created an application called 'Polls'
 -The app only contains views.py which outputs "Helloworld this is polls.index.views"
 
@@ -35,7 +35,7 @@ urlpatterns = [
 ```
 -Now, since we dont have anything further than polls/, we just merely go into this file and run views.index which just returns "helloworld!"
 
-##Django app part 2
+## Django app part 2
 -settings need to be fixed but we are using SQLlite so no need to change
 -model classes created(Question, Choice)
 -Now we can activate the models by creating a database schema(CREATE TABLE statements) for the app
@@ -58,7 +58,7 @@ For example, c = q.choice_set.create(...) Even though, c is not directly related
 
 Another thing is to create superuser and this is done by createsuperuser in manage.py.
 
-##Django app part 3
+## Django app part 3
 Now connect the views to the application!
 1. begin from the URL
 -in urlpatterns, with '<int:question_id>', we pass in this integer type to views.detail or other functions. This way, we can connect the URL with views.
@@ -69,7 +69,7 @@ Now connect the views to the application!
 -render() takes the request object as its first argument, a template name as its second argument and a dictionary as its optional third argument. It returns an HttpResponse object of the given template rendered with the given context.
 -now, we are able to get the views connected to .html file which will render the views in terms of the .html file.
 
-##Django app part 4
+## Django app part 4
 -detail.html
 ->displays a radio button for each question choice. The value of each radio button is the associated quesiton choice's ID.
 ->all post forms that are targeted at internal URLs should use the csrf_token template tag
@@ -87,6 +87,11 @@ Now connect the views to the application!
 Now going in to using **generic views**
 why? detail() and results() are almost identical to each other, other than inheriting different .html files. Therefore, we can optimize it with generic views.
 1. convert the URL conf
+-> 'question_id' to 'pk'
 2. Delete some of unnecessary views
+-> We using two generic views: ListView and DetailView.
+-> "display a list of objects" and "display a detail page for a particular type of object"
+->The DetailView generic view expects the primary key value captured from the URL to be called pk and this is why we changed from question_id to pk for generic views.
 3. new views based on Django's generic views
+->mostly ListView and DetailView.
 
