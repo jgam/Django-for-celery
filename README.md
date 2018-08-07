@@ -70,3 +70,23 @@ Now connect the views to the application!
 -now, we are able to get the views connected to .html file which will render the views in terms of the .html file.
 
 ##Django app part 4
+-detail.html
+->displays a radio button for each question choice. The value of each radio button is the associated quesiton choice's ID.
+->all post forms that are targeted at internal URLs should use the csrf_token template tag
+
+-polls/views.py
+->if selected_choice exists, we can make that as a variable
+->when keyError occurred, return render function with inputs
+->if you don't find any selected votes, you can move on with increasing the counter values.
+->lastly, return Httpresponse which takes a single argument: the URL to which the user will be redirected. In this case the user is redirected to : reverse() which helps avoid having to hardcode a URL in the view function. We want to pass control to and the varaible portion of the URl pattern that poinst to that view. In this case, using the URLconf we set up earlier.
+
+**This part is critical since it talks about how to actually create functionality in an application (make sure to know about displaying votes and redirecting to before)**
+
+
+
+Now going in to using **generic views**
+why? detail() and results() are almost identical to each other, other than inheriting different .html files. Therefore, we can optimize it with generic views.
+1. convert the URL conf
+2. Delete some of unnecessary views
+3. new views based on Django's generic views
+
